@@ -1,0 +1,228 @@
+.page {
+  width: 100%;
+}
+
+/* Full-width teal banner with curved bottom (shop layout, swapped colours) */
+.hero {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.heroBanner {
+  position: relative;
+  width: 100%;
+  padding: var(--spacing-3xl) var(--spacing-lg) calc(var(--spacing-3xl) + 50px);
+  background-color: var(--color-banner);
+}
+
+.heroBanner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: var(--color-bg);
+  border-radius: 50% 50% 0 0;
+}
+
+.heroBannerInner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heroBrand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xl);
+}
+
+.heroLogo {
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.heroLogoImg {
+  width: 260px;
+  height: auto;
+}
+
+.heroTextContent {
+  flex: 1;
+  max-width: 520px;
+  text-align: center;
+}
+
+.siteTitle {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 var(--spacing-sm);
+  line-height: var(--line-height-tight);
+}
+
+.heroWelcome {
+  margin: 0;
+  font-size: var(--font-size-2xl);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-text);
+  line-height: var(--line-height-tight);
+}
+
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-md) var(--spacing-lg) var(--spacing-2xl);
+}
+
+.heroIntro {
+  max-width: 800px;
+  margin: var(--spacing-sm) auto var(--spacing-3xl);
+  padding: 0 var(--spacing-md);
+  text-align: center;
+  color: var(--color-text);
+}
+
+.heroIntro p {
+  margin: 0 0 var(--spacing-md);
+  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-base);
+}
+
+.heroIntro p:last-of-type {
+  margin-bottom: var(--spacing-xl);
+}
+
+.heroActions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.section {
+  margin-bottom: var(--spacing-4xl);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xl);
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.seeAll {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: var(--font-size-base);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.empty {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
+}
+
+/* Full-width band with curved top (mirrors shop FAQ / main site sections) */
+.aboutSection {
+  position: relative;
+  width: 100%;
+  margin-top: var(--spacing-xl);
+  padding: calc(var(--spacing-3xl) + 50px) var(--spacing-lg) var(--spacing-4xl);
+  background-color: #ffffff;
+}
+
+.aboutSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: var(--color-bg);
+  border-radius: 0 0 50% 50%;
+}
+
+.aboutInner {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.aboutInner h2 {
+  margin-bottom: var(--spacing-lg);
+}
+
+.aboutInner p {
+  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-base);
+  margin-bottom: var(--spacing-xl);
+}
+
+.aboutLink {
+  display: inline-block;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  transition: color var(--transition-base);
+}
+
+.aboutLink:hover {
+  color: var(--color-primary-dark);
+}
+
+@media (max-width: 767px) {
+  .wrap {
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-3xl);
+  }
+
+  .heroBanner {
+    padding: var(--spacing-2xl) var(--spacing-md) calc(var(--spacing-2xl) + 50px);
+  }
+
+  .heroIntro {
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-2xl);
+    padding: 0;
+  }
+
+  .heroBrand {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .heroTextContent {
+    max-width: none;
+  }
+
+  .heroLogoImg {
+    width: 140px;
+  }
+
+  .siteTitle {
+    font-size: var(--font-size-3xl);
+  }
+
+  .heroWelcome {
+    font-size: var(--font-size-xl);
+  }
+
+  .aboutSection {
+    padding: calc(var(--spacing-2xl) + 50px) var(--spacing-md) var(--spacing-3xl);
+  }
+}

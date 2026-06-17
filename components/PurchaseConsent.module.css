@@ -1,0 +1,41 @@
+.fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin: 0 0 var(--spacing-md);
+  background: var(--color-surface);
+}
+
+.legend {
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  padding: 0 var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+.checkbox {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: flex-start;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  cursor: pointer;
+}
+
+.checkbox:last-child {
+  margin-bottom: 0;
+}
+
+.checkbox input {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.required {
+  font-weight: 700;
+}
+
+.optional {
+  color: var(--color-text-muted);
+}

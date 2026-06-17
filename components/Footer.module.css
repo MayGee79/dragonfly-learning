@@ -1,0 +1,126 @@
+.footer {
+  background-color: var(--color-bg-light);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: var(--spacing-3xl) var(--spacing-lg) var(--spacing-lg);
+  margin-top: auto;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.linksSection {
+  margin-bottom: var(--spacing-xl);
+}
+
+.links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+
+.links li {
+  margin-bottom: 0;
+}
+
+.links a {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  transition: color var(--transition-base);
+  text-decoration: none;
+}
+
+.links a:hover {
+  color: var(--color-primary);
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.footerLeft,
+.footerCenter,
+.footerRight {
+  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+.footerLeft {
+  order: 1;
+}
+
+.footerCenter {
+  order: 2;
+  text-align: center;
+}
+
+.footerRight {
+  order: 3;
+  text-align: right;
+}
+
+.footerLeft a,
+.footerRight a {
+  color: var(--color-text-light);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.footerLeft a:hover,
+.footerRight a:hover,
+.cookieSettings:hover {
+  color: var(--color-primary);
+}
+
+.cookieSettings {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--color-text-light);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .footer {
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-md);
+  }
+
+  .links {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footerCenter {
+    order: 1;
+    width: 100%;
+  }
+
+  .footerLeft {
+    order: 2;
+  }
+
+  .footerRight {
+    order: 3;
+    text-align: center;
+  }
+}

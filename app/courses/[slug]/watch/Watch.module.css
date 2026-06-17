@@ -1,0 +1,30 @@
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--spacing-2xl) var(--spacing-lg) var(--spacing-4xl);
+}
+
+.header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.back {
+  display: inline-block;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.title {
+  margin: 0;
+}
+
+.notReady {
+  padding: var(--spacing-4xl) var(--spacing-lg);
+  text-align: center;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+}

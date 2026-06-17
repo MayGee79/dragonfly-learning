@@ -1,0 +1,103 @@
+DRAGONFLY PSYCHOTHERAPY
+Privacy Notice
+Dragonfly Learning · Last updated: June 2026
+Your privacy matters to me. This notice explains how I collect, use, and protect your personal information when you use the Dragonfly Learning site to access free or paid continuing professional development (CPD) and other learning resources, when you visit the site, or when you contact me about it.
+This notice covers the learning site at www.dragonflylearning.co.uk. My therapy practice, wellness walks, in-person workshops, and online shop are covered by my main Privacy Notice at www.dragonflypsychotherapy.co.uk/privacy-policy. The two notices are consistent with one another.
+I follow the UK General Data Protection Regulation (UK GDPR), the Data Protection Act 2018 (as amended by the Data (Use and Access) Act 2025), and my professional codes of conduct (BACP and UKCP).
+1. Who I Am
+I am the data controller for the personal information you provide. This means I decide how your data is used and I am responsible for keeping it safe.
+	•	Name: Dr Victoria Froome
+	•	Trading as: Dragonfly Psychotherapy
+	•	Address: Guildford Therapy Rooms, 3 Beaufort, Railton Road, Guildford, Surrey GU2 9JX
+	•	Phone: 07546 431 448
+	•	Email: victoria@dragonflypsychotherapy.co.uk
+	•	Learning site: www.dragonflylearning.co.uk
+	•	ICO Registration: ZB904048
+If you have any questions about this notice or how I handle your data, please get in touch using the details above.
+2. Why I Can Use Your Data (Lawful Basis)
+Data protection law requires me to have a valid reason for processing your personal information. Depending on what we are doing together, I rely on different lawful bases:
+	•	Contract: When you register for or purchase CPD, I process your data to give you access to the content you have paid for and to issue any certificate.
+	•	Legitimate Interests: I keep records to meet my professional, tax, and insurance obligations, to respond to any legal claims, and to run and improve my learning site effectively.
+	•	Consent: I ask for your consent before sending you marketing communications, and before using any optional analytics cookies.
+	•	Legal Obligation: Sometimes I am required by law to retain or share certain information, for example for tax purposes.
+3. What Information I Collect
+CPD Participants (free and paid)
+When you register for or purchase CPD on the learning site, I collect:
+	•	Your name and email address.
+	•	Professional details (such as your profession, employer, and professional registration number) if you need a CPD certificate.
+	•	Payment information for paid CPD. I do not store your full card details - these are processed securely by my payment provider.
+	•	Records of which sessions you have accessed or completed, including dates. This is necessary to give you continued access, to issue CPD certificates, and to provide evidence of your learning if required by your professional body.
+	•	Any feedback or evaluation responses you provide.
+	•	Technical information about how you access the content (such as device type and viewing duration) to help me improve the learning experience.
+Website Visitors
+When you visit the learning site, I may collect technical information such as your IP address, browser type, and which pages you visit; information you provide through any contact or enquiry form; and cookie data (see the Cookies section below).
+General Enquiries
+If you contact me with an enquiry but do not go on to use the learning site, I keep your contact details and our correspondence for up to six months, then delete them, unless you ask me to delete them sooner.
+4. How I Use Your Information
+I use your information to:
+	•	Give you access to the free or paid CPD you have registered for.
+	•	Issue CPD certificates and maintain attendance and completion records.
+	•	Communicate with you about your registration, purchase, or access.
+	•	Meet my legal, regulatory, professional, and tax obligations.
+	•	Send you marketing information, but only if you have opted in.
+	•	Improve my learning site and the content I offer.
+I do not use automated decision-making or profiling with your personal data.
+5. Children and Young People
+The Dragonfly Learning site and its CPD content are intended for adults. Paid CPD is aimed at professionals and at members of the public aged 18 or over. I do not knowingly collect personal information from children through the learning site. Resources designed for use with young people are intended to be accessed by an adult on their behalf.
+6. How I Keep Your Information Safe
+I take the security of your information seriously:
+	•	Digital records are stored on password-protected, encrypted devices and in secure systems.
+	•	Payment information is handled by my payment provider and is not stored by me.
+	•	Unnecessary emails are deleted after one week, with any relevant information saved to the appropriate record.
+	•	Backups are made securely and stored in compliance with UK GDPR.
+	•	I use strong passwords and keep my devices and software up to date.
+7. Who I Share Your Information With
+I do not sell your information or share it for marketing purposes. I may share your information with:
+	•	Service providers who help me run the learning site, such as my learning or course platform, cloud storage, website hosting, email systems, and email marketing platform. These providers are under strict contracts and cannot use your data for any other purpose.
+	•	Payment processing (Stripe): I use Stripe to process payments securely. I do not see, store, or have access to your full card or bank details. Stripe acts as an independent data controller for the payment data it processes and has its own privacy notice.
+	•	Website analytics (Google Analytics): If you accept optional cookies, I use Google Analytics to understand how visitors use the site so I can improve it.
+	•	Email service providers: I use 123 Reg as my email hosting provider for business correspondence. If you have opted in to receive marketing, I use MailerLite as my email marketing platform. MailerLite is based in the European Economic Area.
+	•	Professional advisers such as accountants or lawyers, where necessary, and regulatory bodies or government agencies if required by law.
+Some of my service providers may be based outside the UK. Where this is the case, I ensure appropriate safeguards are in place, such as using providers in countries that meet the UK data protection test, or providers who have signed international data transfer agreements or standard contractual clauses. In particular, Stripe transfers some payment-related data to the United States, protected by the UK Extension to the EU-US Data Privacy Framework adequacy decision.
+8. How Long I Keep Your Information
+I only keep your information for as long as I need it:
+	•	CPD records: Six years after the session, to allow me to evidence learning to professional bodies and for tax purposes. Where you have been issued a certificate, I keep a record of it for the same period.
+	•	Payment and purchase records: Six years after the transaction, for tax and accounting purposes.
+	•	General enquiries: Six months if you do not proceed.
+	•	Marketing preferences: Until you unsubscribe, plus a record of your opt-out to ensure I respect your wishes.
+After these periods, I securely delete or destroy your information.
+9. Your Rights
+You have rights over your personal information. You can:
+	•	Access the information I hold about you.
+	•	Correct any inaccurate or incomplete information.
+	•	Request deletion of your information in certain circumstances.
+	•	Restrict how I use your information.
+	•	Object to certain types of processing.
+	•	Request a copy of your information in a portable format.
+	•	Withdraw consent at any time, where I am relying on consent to process your data.
+To exercise any of these rights, please contact me using the details at the top of this notice. I will respond within one month. If your request is unclear or requires clarification, I may pause this timeframe while I seek the information I need, and I will let you know if so.
+Right to complain: You have a statutory right to raise a data protection complaint directly with me as the data controller. Please raise the matter with me in the first instance using the contact details above. I have a formal Data Protection Complaints Procedure, available on request, and will acknowledge your complaint within 30 days and investigate it without undue delay. If you are not satisfied, you also have the right to complain to the Information Commissioner's Office (ICO) at www.ico.org.uk or on 0303 123 1113.
+10. Marketing Communications
+I will only send you marketing information (such as newsletters, updates about new CPD, or information about events) if you have specifically opted in. You can unsubscribe at any time by clicking the unsubscribe link in any email, or by contacting me directly.
+If you have previously purchased CPD or resources from me, I may send you information about similar offerings under the soft opt-in permitted by the Privacy and Electronic Communications Regulations (PECR). Every such email includes a clear and easy unsubscribe link, and you can opt out at any time without giving a reason.
+How I obtain consent: When you sign up for my newsletter, I will ask you to confirm your subscription by clicking a link in a confirmation email. I keep a record of when and how you signed up so I can demonstrate your consent if asked. Marketing emails are sent through MailerLite, which acts as a data processor under a written agreement.
+11. Cookies
+The learning site uses cookies, which are small files stored on your device that help the site work properly and help me understand how visitors use it.
+	•	Essential cookies: These are necessary for the site to function, including to keep you logged in and to process payments securely. They do not collect personal information about you for analytics purposes.
+	•	Analytics cookies (Google Analytics): Loaded only if you accept optional cookies in the cookie banner. You can change your choice at any time via the cookie settings, and can opt out of Google Analytics at tools.google.com/dlpage/gaoptout.
+	•	Payment cookies (Stripe): When you pay, essential cookies or similar technologies are used by Stripe for secure payment processing and fraud prevention. These are necessary to provide the service you have requested.
+When you first visit the site, you will be asked to accept or reject optional cookies before they are placed on your device. Essential cookies are used regardless, because they are required for the site and checkout to function.
+12. Data Breaches
+In the unlikely event of a data breach that poses a risk to your rights and freedoms, I will inform the ICO within 72 hours and will notify you as soon as possible.
+13. Links to Other Websites
+The learning site may contain links to other websites, including my main site and shop. I am not responsible for the privacy practices of external sites and encourage you to read the privacy notice of any website you visit.
+14. Changes to This Notice
+I may update this privacy notice from time to time. The date at the top shows when it was last updated. For significant changes, I will let you know directly where possible.
+15. Questions and Concerns
+If you have any questions about this notice, or if you want to exercise any of your rights, please contact me:
+	•	Email: victoria@dragonflypsychotherapy.co.uk
+	•	Phone: 07546 431 448
+	•	Post: Dragonfly Psychotherapy, Guildford Therapy Rooms, 3 Beaufort, Railton Road, Guildford, Surrey GU2 9JX
+
+Thank you for taking the time to read this privacy notice. I want you to feel confident that your information is safe with me.
+© 2026 Dragonfly Psychotherapy. Dr Victoria Froome.

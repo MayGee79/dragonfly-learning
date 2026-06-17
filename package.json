@@ -1,0 +1,36 @@
+{
+  "name": "dragonfly-learning",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3002",
+    "dev:clean": "rm -rf .next && next dev -p 3002",
+    "build": "next build",
+    "start": "next start -p 3002",
+    "lint": "next lint",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:seed": "tsx lib/db/seed.ts"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^6.12.0",
+    "@react-pdf/renderer": "^4.1.6",
+    "@vercel/postgres": "^0.10.0",
+    "drizzle-orm": "^0.39.3",
+    "next": "^14.2.35",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "stripe": "^17.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "drizzle-kit": "^0.30.4",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.2.35",
+    "tsx": "^4.19.2",
+    "typescript": "^5.0.0"
+  }
+}
