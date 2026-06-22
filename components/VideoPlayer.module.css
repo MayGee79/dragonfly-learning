@@ -46,7 +46,7 @@
 
 .progressLabel {
   font-weight: 700;
-  color: var(--color-primary-dark);
+  color: var(--color-text-muted);
 }
 
 .hint {

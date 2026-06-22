@@ -105,27 +105,6 @@
   flex-wrap: wrap;
 }
 
-/* Match hero banner turquoise — not the darker site-wide button green */
-.heroActions :global(.btn-primary),
-.heroActions :global(.btn-secondary) {
-  background-color: var(--color-banner);
-  color: var(--color-text);
-  border: 2px solid var(--color-banner);
-}
-
-.heroActions :global(.btn-secondary) {
-  background-color: transparent;
-  border-color: var(--color-banner);
-  color: var(--color-text);
-}
-
-.heroActions :global(.btn-primary:hover),
-.heroActions :global(.btn-secondary:hover) {
-  background-color: #a8c8c9;
-  border-color: #a8c8c9;
-  color: var(--color-text);
-}
-
 .section {
   margin-bottom: var(--spacing-4xl);
 }
@@ -140,9 +119,15 @@
 }
 
 .seeAll {
-  color: var(--color-primary);
+  color: var(--color-text);
   font-weight: 700;
   font-size: var(--font-size-base);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.seeAll:hover {
+  color: var(--color-text-muted);
 }
 
 .grid {
@@ -197,14 +182,16 @@
 
 .aboutLink {
   display: inline-block;
-  color: var(--color-primary);
+  color: var(--color-text);
   font-weight: 700;
   font-size: var(--font-size-base);
+  text-decoration: underline;
+  text-underline-offset: 3px;
   transition: color var(--transition-base);
 }
 
 .aboutLink:hover {
-  color: var(--color-primary-dark);
+  color: var(--color-text-muted);
 }
 
 @media (max-width: 767px) {

@@ -1,7 +1,7 @@
 import { Document, Page, StyleSheet, Text, View, renderToBuffer } from '@react-pdf/renderer'
 import { formatDate } from './format'
 
-const TEAL = '#0f766e'
+const BANNER = '#b9d5d6'
 const NAVY = '#2d3758'
 
 export type CertificateData = {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   brand: {
     fontSize: 14,
     fontFamily: 'Helvetica-Bold',
-    color: TEAL,
+    color: BANNER,
     textAlign: 'center',
     marginTop: 8,
   },
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 24,
     fontFamily: 'Helvetica-Bold',
-    color: TEAL,
+    color: BANNER,
     textAlign: 'center',
     marginTop: 12,
   },

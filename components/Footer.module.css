@@ -36,7 +36,7 @@
 }
 
 .links a:hover {
-  color: var(--color-primary);
+  color: var(--color-text);
 }
 
 .footerBottom {
@@ -81,7 +81,7 @@
 .footerLeft a:hover,
 .footerRight a:hover,
 .cookieSettings:hover {
-  color: var(--color-primary);
+  color: var(--color-text);
 }
 
 .cookieSettings {

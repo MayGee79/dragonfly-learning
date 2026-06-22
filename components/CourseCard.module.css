@@ -35,7 +35,7 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-darker) 100%);
-  color: #ffffff;
+  color: var(--color-text);
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -47,7 +47,7 @@
   top: var(--spacing-sm);
   right: var(--spacing-sm);
   background-color: var(--color-accent);
-  color: #ffffff;
+  color: var(--color-text);
   font-size: var(--font-size-sm);
   font-weight: 700;
   padding: 2px var(--spacing-sm);
@@ -100,13 +100,13 @@
 .price {
   font-size: var(--font-size-xl);
   font-weight: 700;
-  color: var(--color-primary-dark);
+  color: var(--color-text-muted);
 }
 
 .cta {
   font-size: var(--font-size-sm);
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-text);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }

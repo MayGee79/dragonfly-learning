@@ -10,7 +10,7 @@
 
 .back {
   display: inline-block;
-  color: var(--color-primary);
+  color: var(--color-text);
   font-weight: 700;
   font-size: var(--font-size-sm);
   margin-bottom: var(--spacing-md);

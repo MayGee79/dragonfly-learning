@@ -2,12 +2,12 @@
 :root {
   --font-main: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
 
-  /* Teal-led palette (Dragonfly logo). May to finalise hex. */
-  --color-primary: #0f766e; /* teal — buttons, header accents */
-  --color-primary-light: #14b8a6;
-  --color-primary-dark: #0d5e56;
-  --color-primary-darker: #0a4a44;
-  --color-primary-active: #0a4a44;
+  /* Light turquoise (hero banner) for buttons and accents; navy for text */
+  --color-primary: #b9d5d6;
+  --color-primary-light: #c8e0e1;
+  --color-primary-dark: #a8c8c9;
+  --color-primary-darker: #96b8b9;
+  --color-primary-active: #8aa8a9;
 
   /* Swapped vs shop: lilac page bg (was shop hero banner), teal banner (was shop page bg) */
   --color-bg: #ebe6ee;
@@ -113,7 +113,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-primary-dark);
+  color: var(--color-text);
 }
 
 img {
@@ -136,7 +136,7 @@ select {
   justify-content: center;
   gap: var(--spacing-sm);
   background-color: var(--color-primary);
-  color: #ffffff;
+  color: var(--color-text);
   border: none;
   border-radius: var(--radius-md);
   padding: var(--spacing-md) var(--spacing-xl);
@@ -149,7 +149,7 @@ select {
 
 .btn-primary:hover {
   background-color: var(--color-primary-dark);
-  color: #ffffff;
+  color: var(--color-text);
 }
 
 .btn-primary:disabled {
@@ -163,7 +163,7 @@ select {
   justify-content: center;
   gap: var(--spacing-sm);
   background-color: transparent;
-  color: var(--color-primary);
+  color: var(--color-text);
   border: 2px solid var(--color-primary);
   border-radius: var(--radius-md);
   padding: calc(var(--spacing-md) - 2px) calc(var(--spacing-xl) - 2px);
@@ -176,5 +176,5 @@ select {
 
 .btn-secondary:hover {
   background-color: var(--color-primary);
-  color: #ffffff;
+  color: var(--color-text);
 }

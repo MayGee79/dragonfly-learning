@@ -37,11 +37,11 @@
 }
 
 .navLink:hover {
-  color: var(--color-primary-dark);
+  color: var(--color-text-muted);
 }
 
 .navLink:active {
-  color: var(--color-primary-active);
+  color: var(--color-text-muted);
 }
 
 .menuItem {
@@ -63,7 +63,7 @@
 }
 
 .menuButton:hover {
-  color: var(--color-primary-dark);
+  color: var(--color-text-muted);
 }
 
 .caret {
@@ -104,7 +104,7 @@
 
 .dropdownLink:hover {
   background-color: var(--color-surface);
-  color: var(--color-primary-dark);
+  color: var(--color-text);
 }
 
 .dropdownButton {
@@ -123,7 +123,7 @@
 
 .dropdownButton:hover {
   background-color: var(--color-surface);
-  color: var(--color-primary-dark);
+  color: var(--color-text);
 }
 
 .authSlot {
@@ -143,11 +143,11 @@
 }
 
 .signInLink {
-  color: var(--color-primary);
+  color: var(--color-text);
 }
 
 .signInLink:hover {
-  color: var(--color-primary-dark);
+  color: var(--color-text);
 }
 
 .signUpLink {
@@ -156,7 +156,7 @@
 }
 
 .signUpLink:hover {
-  color: var(--color-primary-dark);
+  color: var(--color-text);
 }
 
 .authDivider {

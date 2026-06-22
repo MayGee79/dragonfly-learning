@@ -16,7 +16,7 @@
   letter-spacing: 0.15em;
   font-size: var(--font-size-sm);
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-text-muted);
   margin-bottom: var(--spacing-sm);
 }
 
@@ -50,7 +50,7 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-darker) 100%);
-  color: #ffffff;
+  color: var(--color-text);
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -95,7 +95,7 @@
 .price {
   font-size: var(--font-size-4xl);
   font-weight: 700;
-  color: var(--color-primary-dark);
+  color: var(--color-text);
   margin-bottom: var(--spacing-lg);
 }
 
@@ -151,7 +151,9 @@
 }
 
 .preContract a {
-  color: var(--color-primary);
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
   font-weight: 700;
 }
 
