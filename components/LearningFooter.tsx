@@ -33,6 +33,11 @@ export default function LearningFooter() {
               <Link href="/cancellation">Cancellation</Link>
             </li>
             <li>
+              <a href={`${MAIN}/ai-and-transparency`} target="_blank" rel="noopener noreferrer">
+                AI and Transparency
+              </a>
+            </li>
+            <li>
               <a href={`${MAIN}/`} target="_blank" rel="noopener noreferrer">
                 Dragonfly Psychotherapy
               </a>
