@@ -93,7 +93,7 @@ export default async function HomePage() {
           <h2>About Dragonfly Psychotherapy</h2>
           <p>
             Dragonfly Learning is part of Dragonfly Psychotherapy, the Surrey practice of Dr Victoria
-            Froome, an integrative psychotherapist and former NHS GP. With almost 20 years of clinical
+            Froome, an integrative psychotherapist and former NHS GP. With over 20 years of clinical
             experience and BACP registration, Vicky brings a rare combination of therapeutic skill and
             medical insight to everything she teaches. She works with adults and young people in
             Guildford, East Horsley and online, supporting people through anxiety, depression, burnout,
