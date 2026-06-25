@@ -9,6 +9,7 @@ import { courses } from './schema'
 const slug = 'regulation-beyond-stillness'
 const DEFAULT_BUNNY_LIBRARY_ID = '685498'
 const DEFAULT_BUNNY_VIDEO_ID = '4fd44592-36e4-4d8c-94c9-0d142e17e463'
+const THUMBNAIL_URL = '/images/regulation-beyond-stillness.png'
 
 const description =
   'A guide to grounding and self-regulation — practical tools when stillness and breathwork are not the right fit. **Launch offer: £7 for the first two weeks — then £15.**'
@@ -62,6 +63,7 @@ async function main() {
     cpdHours: '1.0',
     bunnyVideoId,
     bunnyLibraryId,
+    thumbnailUrl: THUMBNAIL_URL,
     status: 'published' as const,
     sortOrder: 0,
     updatedAt: new Date(),

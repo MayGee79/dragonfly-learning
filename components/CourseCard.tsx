@@ -10,7 +10,7 @@ export default function CourseCard({ course }: { course: Course }) {
       <div className={styles.thumb}>
         {course.thumbnailUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={course.thumbnailUrl} alt="" className={styles.thumbImg} />
+          <img src={course.thumbnailUrl} alt={course.title} className={styles.thumbImg} />
         ) : (
           <div className={styles.thumbPlaceholder} aria-hidden>
             <span>Dragonfly Learning</span>

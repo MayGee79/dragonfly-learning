@@ -74,7 +74,7 @@ export default async function CourseDetailPage({ params }: { params: { slug: str
           <div className={styles.media}>
             {course.thumbnailUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={course.thumbnailUrl} alt="" className={styles.thumb} />
+              <img src={course.thumbnailUrl} alt={course.title} className={styles.thumb} />
             ) : (
               <div className={styles.thumbPlaceholder} aria-hidden>
                 <span>Dragonfly Learning</span>
