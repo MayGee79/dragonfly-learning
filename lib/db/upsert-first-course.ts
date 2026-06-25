@@ -17,11 +17,7 @@ const title = 'Understanding and Working with Rejection Sensitive Dysphoria'
 const description =
   'This on-demand CPD course explores Rejection Sensitive Dysphoria (RSD), the intense emotional response to perceived or actual rejection, criticism or failure that is frequently experienced by neurodivergent clients. Designed for counsellors, psychotherapists and allied health professionals, it covers how to recognise RSD, understand its roots, and work with it therapeutically. On completion you will receive a certificate for your CPD records.'
 
-const longDescription = [
-  '## Launch pricing',
-  '',
-  '**Half price £7.50 until 10 July 2026, then £15.**',
-].join('\n')
+const longDescription = ''
 
 async function main() {
   if (!process.env.POSTGRES_URL) {

@@ -1,18 +1,11 @@
 import Link from 'next/link'
 import type { Course } from '@/lib/db/schema'
-import { getLaunchOfferBadge } from '@/lib/launchOffer'
+import LaunchOfferBadge from '@/components/LaunchOfferBadge'
 import { formatDuration, formatPrice } from '@/lib/format'
 import styles from './CourseCard.module.css'
 
-export default function CourseCard({
-  course,
-  showLaunchOffer = false,
-}: {
-  course: Course
-  showLaunchOffer?: boolean
-}) {
+export default function CourseCard({ course }: { course: Course }) {
   const isFree = course.pricePence <= 0
-  const launchBadge = showLaunchOffer ? getLaunchOfferBadge(course) : null
   return (
     <Link href={`/courses/${course.slug}`} className={styles.card}>
       <div className={styles.thumb}>
@@ -39,7 +32,7 @@ export default function CourseCard({
         <div className={styles.footer}>
           <div className={styles.priceRow}>
             <span className={styles.price}>{formatPrice(course.pricePence)}</span>
-            {launchBadge && <span className={styles.launchBadge}>{launchBadge}</span>}
+            <LaunchOfferBadge slug={course.slug} />
           </div>
           <span className={styles.cta}>View course →</span>
         </div>

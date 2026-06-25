@@ -1,0 +1,30 @@
+.launchBadge {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-text);
+  background-color: var(--color-accent);
+  padding: 3px var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  animation: launchPulse 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .launchBadge {
+    animation: none;
+  }
+}
+
+@keyframes launchPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.03);
+  }
+}

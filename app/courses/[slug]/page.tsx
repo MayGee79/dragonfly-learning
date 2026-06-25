@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { auth } from '@clerk/nextjs/server'
 import { ACCESS_PERIOD_MONTHS, getCompletion, getCourseBySlug, getAccessInfo, hasAccess } from '@/lib/db/queries'
 import { formatDuration, formatPrice } from '@/lib/format'
+import LaunchOfferBadge from '@/components/LaunchOfferBadge'
 import { Markdown } from '@/lib/markdown'
 import BuyButton, { type BuyButtonState } from '@/components/BuyButton'
 import styles from './CourseDetail.module.css'
@@ -91,7 +92,10 @@ export default async function CourseDetailPage({ params }: { params: { slug: str
 
         <aside className={styles.sidebar}>
           <div className={styles.card}>
-            <p className={styles.price}>{formatPrice(course.pricePence)}</p>
+            <div className={styles.priceRow}>
+              <p className={styles.price}>{formatPrice(course.pricePence)}</p>
+              <LaunchOfferBadge slug={course.slug} />
+            </div>
             <ul className={styles.facts}>
               <li>
                 <span>Duration</span>
