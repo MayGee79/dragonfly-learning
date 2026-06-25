@@ -1,18 +1,21 @@
 /**
- * Upsert the first live course: Regulation Beyond Stillness.
+ * Upsert the first live course (title matches Bunny + slide).
  * Run: npm run db:upsert-first-course (with POSTGRES_URL in the environment)
  */
-import { eq } from 'drizzle-orm'
+import { eq, inArray } from 'drizzle-orm'
 import { db } from './index'
 import { courses } from './schema'
 
-const slug = 'regulation-beyond-stillness'
+const slug = 'understanding-and-working-with-rejection-sensitive-dysphoria'
+const legacySlugs = ['regulation-beyond-stillness', 'understanding-rejection-sensitive-dysphoria']
 const DEFAULT_BUNNY_LIBRARY_ID = '685498'
 const DEFAULT_BUNNY_VIDEO_ID = '4fd44592-36e4-4d8c-94c9-0d142e17e463'
-const THUMBNAIL_URL = '/images/regulation-beyond-stillness.png'
+const THUMBNAIL_URL = '/images/understanding-rejection-sensitive-dysphoria.png'
+
+const title = 'Understanding and Working with Rejection Sensitive Dysphoria'
 
 const description =
-  'A guide to grounding and self-regulation — practical tools when stillness and breathwork are not the right fit. **Launch offer: £7 for the first two weeks — then £15.**'
+  'A CPD training session. **Launch offer: £7 for the first two weeks — then £15.**'
 
 const longDescription = [
   '## Launch pricing',
@@ -21,21 +24,13 @@ const longDescription = [
   '',
   '## About this session',
   '',
-  'An on-demand CPD session from Dr Victoria Froome on grounding and self-regulation — for therapists, counsellors, and anyone supporting neurodivergent clients.',
+  'An on-demand CPD session from Dr Victoria Froome on understanding and working with Rejection Sensitive Dysphoria (RSD) in clinical practice.',
   '',
-  '## The core idea',
+  '## What this session covers',
   '',
-  'Regulation is not necessarily about quieting the brain. It is about giving the brain the right kind of input, or the right kind of job.',
-  '',
-  '## What you will explore',
-  '',
-  '- Movement as regulation',
-  '- Strong sensory input',
-  '- Giving the brain a job',
-  '- Bilateral and rhythmic input',
-  '- Stimming as regulation',
-  '- Co-regulation and environment-first strategies',
-  '- Matching tools to activation, shutdown, rumination, and sensory overload',
+  '- What RSD is and how it relates to ADHD and neurodivergence',
+  '- How to recognise the signs with clients',
+  '- Practical, compassionate approaches you can use straight away',
   '',
   'Watch at least **90%** of the video to complete the session and download your CPD certificate.',
 ].join('\n')
@@ -46,15 +41,21 @@ async function main() {
     process.exit(1)
   }
 
-  const existing = await db.select().from(courses).where(eq(courses.slug, slug)).limit(1)
+  const legacy = await db.select().from(courses).where(inArray(courses.slug, legacySlugs))
+  const canonical =
+    legacy.find((c) => c.slug === 'regulation-beyond-stillness') ??
+    legacy.find((c) => c.slug === slug) ??
+    legacy[0]
 
   const bunnyLibraryId =
-    process.env.NEXT_PUBLIC_BUNNY_LIBRARY_ID?.trim() || existing[0]?.bunnyLibraryId || DEFAULT_BUNNY_LIBRARY_ID
+    process.env.NEXT_PUBLIC_BUNNY_LIBRARY_ID?.trim() ||
+    canonical?.bunnyLibraryId ||
+    DEFAULT_BUNNY_LIBRARY_ID
   const bunnyVideoId =
-    process.env.BUNNY_FIRST_VIDEO_ID?.trim() || existing[0]?.bunnyVideoId || DEFAULT_BUNNY_VIDEO_ID
+    process.env.BUNNY_FIRST_VIDEO_ID?.trim() || canonical?.bunnyVideoId || DEFAULT_BUNNY_VIDEO_ID
 
   const values = {
-    title: 'Regulation Beyond Stillness',
+    title,
     slug,
     description,
     longDescription,
@@ -69,12 +70,21 @@ async function main() {
     updatedAt: new Date(),
   }
 
-  if (existing.length > 0) {
-    await db.update(courses).set(values).where(eq(courses.slug, slug))
-    console.log(`Updated course: ${slug} (£7 launch, published)`)
+  if (canonical) {
+    await db.update(courses).set(values).where(eq(courses.id, canonical.id))
+    console.log(`Updated course: ${title}`)
   } else {
     await db.insert(courses).values(values)
-    console.log(`Created course: ${slug} (£7 launch, published)`)
+    console.log(`Created course: ${title}`)
+  }
+
+  const stale = legacy.filter((c) => c.slug !== slug && c.id !== canonical?.id)
+  for (const course of stale) {
+    await db
+      .update(courses)
+      .set({ status: 'archived', updatedAt: new Date() })
+      .where(eq(courses.id, course.id))
+    console.log(`Archived legacy course: ${course.slug}`)
   }
 }
 
