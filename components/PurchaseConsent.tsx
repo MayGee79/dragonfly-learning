@@ -70,7 +70,7 @@ export default function PurchaseConsent({
             I want access to my CPD content to be made available immediately, and I understand that
             by doing so I lose my 14-day right to cancel this purchase. (My statutory rights if the
             content is faulty or not as described are unaffected.){' '}
-            <span className={styles.optional}>(optional — leave unticked to keep your 14-day cancellation right)</span>
+            <span className={styles.optional}>(optional: leave unticked to keep your 14-day cancellation right)</span>
           </span>
         </label>
       )}

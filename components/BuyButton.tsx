@@ -124,7 +124,7 @@ export default function BuyButton({
   }
 
   const label =
-    state === 'free' ? 'Register and start watching — Free' : `Buy now — ${formatPrice(pricePence)}`
+    state === 'free' ? 'Register and start watching (Free)' : `Buy now for ${formatPrice(pricePence)}`
 
   return (
     <div className={styles.wrapper}>

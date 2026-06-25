@@ -20,7 +20,7 @@ const description =
 const longDescription = [
   '## Launch pricing',
   '',
-  '**Launch price £7 for a limited time only (first two weeks) — then £15.**',
+  '**Launch price £7 for a limited time only (first two weeks), then £15.**',
 ].join('\n')
 
 async function main() {

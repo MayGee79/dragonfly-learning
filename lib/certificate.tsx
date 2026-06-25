@@ -148,7 +148,7 @@ function CertificateDocument({ data }: { data: CertificateData }) {
 
   return (
     <Document
-      title={`Certificate of Completion — ${data.courseTitle}`}
+      title={`Certificate of Completion: ${data.courseTitle}`}
       author="Dragonfly Learning"
     >
       <Page size="A4" orientation="landscape" style={styles.page}>
