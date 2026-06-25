@@ -20,7 +20,7 @@ const description =
 const longDescription = [
   '## Launch pricing',
   '',
-  '**Launch price £7 for a limited time only (first two weeks), then £15.**',
+  '**Half price £7.50 until 10 July 2026, then £15.**',
 ].join('\n')
 
 async function main() {
@@ -49,7 +49,7 @@ async function main() {
     slug,
     description,
     longDescription,
-    pricePence: 700,
+    pricePence: 750,
     durationMinutes: 60,
     cpdHours: '1.0',
     bunnyVideoId,
