@@ -2,7 +2,7 @@
  * Upsert the first live course (title matches Bunny + slide).
  * Run: npm run db:upsert-first-course (with POSTGRES_URL in the environment)
  */
-import { eq, inArray } from 'drizzle-orm'
+import { and, eq, inArray, ne } from 'drizzle-orm'
 import { db } from './index'
 import { courses } from './schema'
 
@@ -29,10 +29,12 @@ async function main() {
     process.exit(1)
   }
 
+  const [published] = await db.select().from(courses).where(eq(courses.slug, slug)).limit(1)
   const legacy = await db.select().from(courses).where(inArray(courses.slug, legacySlugs))
   const canonical =
+    published ??
     legacy.find((c) => c.slug === 'regulation-beyond-stillness') ??
-    legacy.find((c) => c.slug === slug) ??
+    legacy.find((c) => c.slug === 'understanding-rejection-sensitive-dysphoria') ??
     legacy[0]
 
   const bunnyLibraryId =
@@ -59,6 +61,11 @@ async function main() {
   }
 
   if (canonical) {
+    await db
+      .update(courses)
+      .set({ status: 'archived', updatedAt: new Date() })
+      .where(and(eq(courses.slug, slug), ne(courses.id, canonical.id)))
+
     await db.update(courses).set(values).where(eq(courses.id, canonical.id))
     console.log(`Updated course: ${title}`)
   } else {
