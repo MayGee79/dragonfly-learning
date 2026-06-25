@@ -15,24 +15,12 @@ const THUMBNAIL_URL = '/images/understanding-rejection-sensitive-dysphoria.png'
 const title = 'Understanding and Working with Rejection Sensitive Dysphoria'
 
 const description =
-  'A CPD training session. **Launch offer: £7 for the first two weeks — then £15.**'
+  'This on-demand CPD course explores Rejection Sensitive Dysphoria (RSD), the intense emotional response to perceived or actual rejection, criticism or failure that is frequently experienced by neurodivergent clients. Designed for counsellors, psychotherapists and allied health professionals, it covers how to recognise RSD, understand its roots, and work with it therapeutically. On completion you will receive a certificate for your CPD records.'
 
 const longDescription = [
   '## Launch pricing',
   '',
   '**£7 for the first two weeks after this course goes live — then £15.**',
-  '',
-  '## About this session',
-  '',
-  'An on-demand CPD session from Dr Victoria Froome on understanding and working with Rejection Sensitive Dysphoria (RSD) in clinical practice.',
-  '',
-  '## What this session covers',
-  '',
-  '- What RSD is and how it relates to ADHD and neurodivergence',
-  '- How to recognise the signs with clients',
-  '- Practical, compassionate approaches you can use straight away',
-  '',
-  'Watch at least **90%** of the video to complete the session and download your CPD certificate.',
 ].join('\n')
 
 async function main() {
