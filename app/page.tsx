@@ -78,7 +78,7 @@ export default async function HomePage() {
           {featured.length > 0 ? (
             <div className={styles.grid}>
               {featured.map((course) => (
-                <CourseCard key={course.id} course={course} />
+                <CourseCard key={course.id} course={course} showLaunchOffer />
               ))}
             </div>
           ) : (
