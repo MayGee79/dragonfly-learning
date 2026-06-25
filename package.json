@@ -11,7 +11,8 @@
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "db:seed": "tsx lib/db/seed.ts"
+    "db:seed": "tsx lib/db/seed.ts",
+    "db:upsert-first-course": "tsx lib/db/upsert-first-course.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.12.0",
