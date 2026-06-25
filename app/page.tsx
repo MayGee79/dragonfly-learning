@@ -50,9 +50,13 @@ export default async function HomePage() {
       <div className={styles.wrap}>
         <div className={styles.heroIntro}>
           <p>
-            Online CPD for therapists, counsellors and helping professionals. Evidence-informed on-demand
-            sessions from Dr Victoria Froome, Counselling Psychologist. Watch at your own pace, complete a
-            session and download your CPD certificate instantly. New courses added regularly.
+            On-demand CPD sessions from Dr Victoria Froome, practical, evidence-informed learning you can
+            watch at your own pace. Complete a course and download your certificate of completion straight
+            away.
+          </p>
+          <p>
+            We are starting with a small catalogue and growing steadily. Each session is designed to bring
+            useful ideas you can apply in your work, just thoughtful teaching, clearly delivered.
           </p>
           <div className={styles.heroActions}>
             <Link href="/courses" className="btn-primary">
