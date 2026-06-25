@@ -169,7 +169,7 @@ function CertificateDocument({ data }: { data: CertificateData }) {
           </View>
           <View style={styles.metaBlock}>
             <Text style={styles.metaLabel}>Date of completion:</Text>
-            <Text style={styles.metaValue}>{formatDate(data.completedAt) || '—'}</Text>
+            <Text style={styles.metaValue}>{formatDate(data.completedAt) || '-'}</Text>
           </View>
         </View>
 

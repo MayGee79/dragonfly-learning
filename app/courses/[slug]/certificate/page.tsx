@@ -52,7 +52,7 @@ export default async function CertificatePage({ params }: { params: { slug: stri
           </div>
           <div>
             <span>Completed</span>
-            <strong>{formatDate(completion.completedAt) || '—'}</strong>
+            <strong>{formatDate(completion.completedAt) || '-'}</strong>
           </div>
         </div>
 
