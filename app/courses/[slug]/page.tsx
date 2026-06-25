@@ -5,6 +5,7 @@ import { auth } from '@clerk/nextjs/server'
 import { ACCESS_PERIOD_MONTHS, getCompletion, getCourseBySlug, getAccessInfo, hasAccess } from '@/lib/db/queries'
 import { formatDuration, formatPrice } from '@/lib/format'
 import LaunchOfferBadge from '@/components/LaunchOfferBadge'
+import { isLaunchOfferActive, LAUNCH_OFFER_FULL_PRICE_PENCE } from '@/lib/launchOffer'
 import { Markdown } from '@/lib/markdown'
 import BuyButton, { type BuyButtonState } from '@/components/BuyButton'
 import styles from './CourseDetail.module.css'
@@ -93,6 +94,11 @@ export default async function CourseDetailPage({ params }: { params: { slug: str
         <aside className={styles.sidebar}>
           <div className={styles.card}>
             <div className={styles.priceRow}>
+              {isLaunchOfferActive(course) && (
+                <span className={styles.originalPrice} title="Full price from 11 July 2026">
+                  {formatPrice(LAUNCH_OFFER_FULL_PRICE_PENCE)}
+                </span>
+              )}
               <p className={styles.price}>{formatPrice(course.pricePence)}</p>
               <LaunchOfferBadge slug={course.slug} />
             </div>

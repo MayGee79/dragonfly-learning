@@ -112,6 +112,14 @@
   color: var(--color-text-muted);
 }
 
+.originalPrice {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
 .cta {
   font-size: var(--font-size-sm);
   font-weight: 700;
