@@ -5,6 +5,7 @@ import {
   courses,
   feedbackSubmissions,
   purchases,
+  stripeEvents,
   type Completion,
   type Course,
   type FeedbackSubmission,
@@ -132,6 +133,25 @@ export async function getAccessInfo(clerkUserId: string, courseId: string): Prom
 export async function hasAccess(clerkUserId: string, courseId: string): Promise<boolean> {
   const info = await getAccessInfo(clerkUserId, courseId)
   return info?.hasAccess ?? false
+}
+
+/** True when the user has a completed purchase row for this course. */
+export async function hasCompletedPurchase(
+  clerkUserId: string,
+  courseId: string,
+): Promise<boolean> {
+  const rows = await db
+    .select({ id: purchases.id })
+    .from(purchases)
+    .where(
+      and(
+        eq(purchases.clerkUserId, clerkUserId),
+        eq(purchases.courseId, courseId),
+        eq(purchases.status, 'completed'),
+      ),
+    )
+    .limit(1)
+  return rows.length > 0
 }
 
 export function accessAvailableFromPurchase(
@@ -274,6 +294,26 @@ export async function submitFeedback(data: NewFeedbackSubmission): Promise<Feedb
     .where(and(eq(completions.clerkUserId, data.clerkUserId), eq(completions.courseId, data.courseId)))
 
   return submission
+}
+
+/* ---------- Stripe event idempotency ledger ---------- */
+
+/** True when this Stripe event id has already been processed and recorded. */
+export async function wasStripeEventProcessed(eventId: string): Promise<boolean> {
+  const rows = await db
+    .select({ id: stripeEvents.id })
+    .from(stripeEvents)
+    .where(eq(stripeEvents.id, eventId))
+    .limit(1)
+  return rows.length > 0
+}
+
+/** Records a processed Stripe event id. Safe to call more than once. */
+export async function recordStripeEvent(eventId: string, eventType: string): Promise<void> {
+  await db
+    .insert(stripeEvents)
+    .values({ id: eventId, type: eventType })
+    .onConflictDoNothing()
 }
 
 /* ---------- Admin stats ---------- */

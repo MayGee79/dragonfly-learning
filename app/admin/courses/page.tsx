@@ -1,5 +1,7 @@
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import { getAllCourses } from '@/lib/db/queries'
+import { isAdmin } from '@/lib/admin'
 import { formatPrice } from '@/lib/format'
 import { deleteCourseAction } from './actions'
 import styles from '@/components/admin/Admin.module.css'
@@ -7,6 +9,8 @@ import styles from '@/components/admin/Admin.module.css'
 export const dynamic = 'force-dynamic'
 
 export default async function AdminCoursesPage() {
+  // Defence in depth: in addition to the admin layout and middleware gate.
+  if (!(await isAdmin())) notFound()
   const courses = await getAllCourses()
 
   return (

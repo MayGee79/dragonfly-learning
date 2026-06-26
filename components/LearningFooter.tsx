@@ -52,6 +52,8 @@ export default function LearningFooter() {
           </p>
           <p className={styles.footerCenter}>&copy; {new Date().getFullYear()} Dragonfly Psychotherapy. All Rights Reserved.</p>
           <p className={styles.footerRight}>
+            <Link href="/admin">Admin</Link>
+            {' · '}
             <button
               type="button"
               className={styles.cookieSettings}

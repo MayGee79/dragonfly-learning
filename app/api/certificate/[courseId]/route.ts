@@ -3,6 +3,7 @@ import {
   canDownloadCertificate,
   getCompletion,
   getCourseById,
+  hasCompletedPurchase,
   markCertificateDownloaded,
 } from '@/lib/db/queries'
 import { formatCertificateReference, generateCertificatePdf } from '@/lib/certificate'
@@ -34,6 +35,15 @@ export async function GET(_request: Request, { params }: { params: { courseId: s
     if (!(await canDownloadCertificate(user.userId, course))) {
       return NextResponse.json(
         { error: 'Certificates are available for completed paid sessions only.' },
+        { status: 403 },
+      )
+    }
+
+    // Defence in depth: do not rely solely on the completion flag. Confirm the
+    // user actually has a completed purchase for this specific course.
+    if (!(await hasCompletedPurchase(user.userId, params.courseId))) {
+      return NextResponse.json(
+        { error: 'A completed purchase is required for this certificate.' },
         { status: 403 },
       )
     }

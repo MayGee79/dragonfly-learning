@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { auth } from '@clerk/nextjs/server'
 import { COMPLETION_THRESHOLD, hasAccess, upsertProgress } from '@/lib/db/queries'
+import { LEARNING_RATE_LIMITS, enforceRateLimit } from '@/lib/rateLimit'
 
 export const dynamic = 'force-dynamic'
 
@@ -12,6 +13,9 @@ export async function POST(request: Request) {
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+
+    const limited = enforceRateLimit(request, LEARNING_RATE_LIMITS.completion, userId)
+    if (limited) return limited
 
     const body = (await request.json()) as CompletionBody
     if (!body.courseId || typeof body.progressPercent !== 'number') {

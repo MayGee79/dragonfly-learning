@@ -10,6 +10,7 @@ import {
 } from '@/lib/db/queries'
 import { getStripe } from '@/lib/stripe'
 import { getCurrentUserInfo } from '@/lib/user'
+import { LEARNING_RATE_LIMITS, enforceRateLimit } from '@/lib/rateLimit'
 
 export const dynamic = 'force-dynamic'
 
@@ -22,6 +23,9 @@ type CheckoutBody = {
 
 export async function POST(request: Request) {
   try {
+    const limited = enforceRateLimit(request, LEARNING_RATE_LIMITS.checkout)
+    if (limited) return limited
+
     const user = await getCurrentUserInfo()
     if (!user) {
       return NextResponse.json({ error: 'You must be signed in.' }, { status: 401 })

@@ -1,11 +1,15 @@
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import { getAdminOverview } from '@/lib/db/queries'
+import { isAdmin } from '@/lib/admin'
 import { formatAmount, formatDate } from '@/lib/format'
 import styles from '@/components/admin/Admin.module.css'
 
 export const dynamic = 'force-dynamic'
 
 export default async function AdminOverviewPage() {
+  // Defence in depth: in addition to the admin layout and middleware gate.
+  if (!(await isAdmin())) notFound()
   const overview = await getAdminOverview()
 
   return (

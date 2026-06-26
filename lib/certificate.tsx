@@ -1,3 +1,4 @@
+import React from 'react'
 import { Document, Page, StyleSheet, Text, View, renderToBuffer } from '@react-pdf/renderer'
 import { formatDate } from './format'
 

@@ -1,10 +1,14 @@
+import { notFound } from 'next/navigation'
 import { getAllPurchases } from '@/lib/db/queries'
+import { isAdmin } from '@/lib/admin'
 import { formatAmount, formatDate } from '@/lib/format'
 import styles from '@/components/admin/Admin.module.css'
 
 export const dynamic = 'force-dynamic'
 
 export default async function AdminPurchasesPage() {
+  // Defence in depth: in addition to the admin layout and middleware gate.
+  if (!(await isAdmin())) notFound()
   const purchases = await getAllPurchases()
 
   return (

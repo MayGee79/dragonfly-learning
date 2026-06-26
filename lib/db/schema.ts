@@ -130,6 +130,15 @@ export const feedbackSubmissions = pgTable(
   }),
 )
 
+// Explicit dedupe ledger for Stripe webhook events. Complements the unique
+// indexes above: once an event id (evt_xxx) is recorded, a retry of the same
+// event is acknowledged and skipped rather than reprocessed.
+export const stripeEvents = pgTable('stripe_events', {
+  id: text('id').primaryKey(),
+  type: text('type').notNull(),
+  processedAt: timestamp('processed_at', { withTimezone: true }).notNull().defaultNow(),
+})
+
 export type Course = typeof courses.$inferSelect
 export type NewCourse = typeof courses.$inferInsert
 export type Purchase = typeof purchases.$inferSelect
@@ -138,3 +147,5 @@ export type Completion = typeof completions.$inferSelect
 export type NewCompletion = typeof completions.$inferInsert
 export type FeedbackSubmission = typeof feedbackSubmissions.$inferSelect
 export type NewFeedbackSubmission = typeof feedbackSubmissions.$inferInsert
+export type StripeEvent = typeof stripeEvents.$inferSelect
+export type NewStripeEvent = typeof stripeEvents.$inferInsert

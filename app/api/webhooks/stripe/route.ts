@@ -6,13 +6,19 @@ import {
   accessAvailableFromPurchase,
   ensureCompletionRow,
   isUniqueViolation,
+  recordStripeEvent,
+  wasStripeEventProcessed,
 } from '@/lib/db/queries'
 import { getStripe } from '@/lib/stripe'
+import { LEARNING_RATE_LIMITS, enforceRateLimit } from '@/lib/rateLimit'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 export async function POST(request: Request) {
+  const limited = enforceRateLimit(request, LEARNING_RATE_LIMITS.webhook)
+  if (limited) return limited
+
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
   if (!webhookSecret) {
     console.error('[stripe-webhook] STRIPE_WEBHOOK_SECRET is not set')
@@ -34,6 +40,17 @@ export async function POST(request: Request) {
     const message = err instanceof Error ? err.message : 'Invalid signature'
     console.error('[stripe-webhook] signature verification failed:', message)
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 })
+  }
+
+  // Idempotency ledger: if we have already processed this event id, acknowledge
+  // and skip. This complements the unique indexes that already make duplicate
+  // processing safe in practice.
+  try {
+    if (await wasStripeEventProcessed(event.id)) {
+      return NextResponse.json({ received: true, duplicate: true })
+    }
+  } catch (e) {
+    console.error('[stripe-webhook] dedupe check failed:', e)
   }
 
   try {
@@ -92,7 +109,15 @@ export async function POST(request: Request) {
     }
   } catch (e) {
     console.error('[stripe-webhook] handler error:', e)
+    // Do not record the event id on failure, so Stripe can retry.
     return NextResponse.json({ error: 'Webhook handler failed' }, { status: 500 })
+  }
+
+  // Processing succeeded: record the event id so retries are skipped.
+  try {
+    await recordStripeEvent(event.id, event.type)
+  } catch (e) {
+    console.error('[stripe-webhook] failed to record event id:', e)
   }
 
   return NextResponse.json({ received: true })
