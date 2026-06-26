@@ -16,8 +16,9 @@ interface VideoPlayerProps {
   slug: string
   initialPercent: number
   initialCompleted: boolean
-  nextStepHref: string
-  nextStepLabel: string
+  nextStepHref?: string
+  nextStepLabel?: string
+  showCertificateHint?: boolean
 }
 
 type PlayerjsPlayer = {
@@ -63,6 +64,7 @@ export default function VideoPlayer({
   initialCompleted,
   nextStepHref,
   nextStepLabel,
+  showCertificateHint = false,
 }: VideoPlayerProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const maxPercentRef = useRef<number>(initialPercent)
@@ -178,12 +180,12 @@ export default function VideoPlayer({
         <span className={styles.progressLabel}>
           {completed ? 'Course complete' : `${percent}% watched`}
         </span>
-        {completed && (
+        {completed && nextStepHref && nextStepLabel && (
           <Link href={nextStepHref} className="btn-primary">
             {nextStepLabel}
           </Link>
         )}
-        {!completed && (
+        {!completed && showCertificateHint && (
           <span className={styles.hint}>Watch {COMPLETION_THRESHOLD}% to unlock your certificate.</span>
         )}
       </div>

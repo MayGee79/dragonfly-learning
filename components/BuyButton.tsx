@@ -116,9 +116,11 @@ export default function BuyButton({
         <Link href={watchUrl} className="btn-secondary">
           Watch again
         </Link>
-        <Link href={certificateHref ?? `/courses/${slug}/certificate`} className="btn-primary">
-          Certificate
-        </Link>
+        {certificateHref && (
+          <Link href={certificateHref} className="btn-primary">
+            Certificate
+          </Link>
+        )}
       </div>
     )
   }

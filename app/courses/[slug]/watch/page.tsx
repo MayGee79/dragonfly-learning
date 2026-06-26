@@ -31,11 +31,9 @@ export default async function WatchPage({ params }: { params: { slug: string } }
 
   const completion = await getCompletion(userId, course.id)
   const libraryId = resolveLibraryId(course.bunnyLibraryId)
-  const requiresFeedback = course.pricePence > 0 && !completion?.feedbackSubmittedAt
-  const nextStepHref = requiresFeedback
-    ? `/courses/${course.slug}/feedback`
-    : `/courses/${course.slug}/certificate`
-  const nextStepLabel = requiresFeedback ? 'Complete feedback for certificate' : 'Download certificate'
+  const isPaid = course.pricePence > 0
+  const nextStepHref = isPaid ? `/courses/${course.slug}/certificate` : undefined
+  const nextStepLabel = isPaid ? 'Download certificate' : undefined
 
   return (
     <div className={styles.page}>
@@ -56,6 +54,7 @@ export default async function WatchPage({ params }: { params: { slug: string } }
           initialCompleted={completion?.completed ?? false}
           nextStepHref={nextStepHref}
           nextStepLabel={nextStepLabel}
+          showCertificateHint={isPaid}
         />
       ) : (
         <div className={styles.notReady}>

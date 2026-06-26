@@ -15,7 +15,9 @@ export const metadata: Metadata = {
 export default async function CertificatesPage() {
   const { userId } = await auth()
   const items = userId ? await getUserDashboard(userId) : []
-  const completed = items.filter(({ completion }) => completion?.completed)
+  const completed = items.filter(
+    ({ completion, course }) => completion?.completed && course.pricePence > 0,
+  )
 
   return (
     <div className={styles.page}>
@@ -42,17 +44,8 @@ export default async function CertificatesPage() {
                 </div>
               </div>
               <div className={styles.rowActions}>
-                <Link
-                  href={
-                    course.pricePence > 0 && !completion?.feedbackSubmittedAt
-                      ? `/courses/${course.slug}/feedback`
-                      : `/courses/${course.slug}/certificate`
-                  }
-                  className="btn-primary"
-                >
-                  {course.pricePence > 0 && !completion?.feedbackSubmittedAt
-                    ? 'Complete feedback'
-                    : 'Download certificate'}
+                <Link href={`/courses/${course.slug}/certificate`} className="btn-primary">
+                  Download certificate
                 </Link>
               </div>
             </li>

@@ -26,7 +26,7 @@ export default async function CoursesPage() {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <h1>Learning</h1>
+        <h1>Courses</h1>
         <p>On-demand CPD sessions you can watch at your own pace.</p>
       </header>
 

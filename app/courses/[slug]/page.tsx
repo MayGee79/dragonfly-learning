@@ -55,10 +55,7 @@ export default async function CourseDetailPage({ params }: { params: { slug: str
       const completion = await getCompletion(userId, course.id)
       if (completion?.completed) {
         buttonState = 'completed'
-        certificateHref =
-          !isFree && !completion.feedbackSubmittedAt
-            ? `/courses/${course.slug}/feedback`
-            : `/courses/${course.slug}/certificate`
+        certificateHref = !isFree ? `/courses/${course.slug}/certificate` : undefined
       } else {
         buttonState = 'continue'
       }
@@ -113,7 +110,7 @@ export default async function CourseDetailPage({ params }: { params: { slug: str
               </li>
               <li>
                 <span>Certificate</span>
-                <strong>On completion</strong>
+                <strong>{isFree ? 'Not included' : 'On completion'}</strong>
               </li>
               <li>
                 <span>Access</span>

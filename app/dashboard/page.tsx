@@ -46,10 +46,6 @@ export default async function DashboardPage() {
                   year: 'numeric',
                 })
               : null
-            const certificateHref =
-              course.pricePence > 0 && !completion?.feedbackSubmittedAt
-                ? `/courses/${course.slug}/feedback`
-                : `/courses/${course.slug}/certificate`
 
             return (
               <li key={course.id} className={styles.row}>
@@ -85,8 +81,8 @@ export default async function DashboardPage() {
                       <Link href={`/courses/${course.slug}/watch`} className="btn-primary">
                         {completed ? 'Watch again' : percent > 0 ? 'Continue' : 'Start watching'}
                       </Link>
-                      {completed && (
-                        <Link href={certificateHref} className="btn-secondary">
+                      {completed && course.pricePence > 0 && (
+                        <Link href={`/courses/${course.slug}/certificate`} className="btn-secondary">
                           Certificate
                         </Link>
                       )}

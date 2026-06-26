@@ -33,7 +33,7 @@ export async function GET(_request: Request, { params }: { params: { courseId: s
 
     if (!(await canDownloadCertificate(user.userId, course))) {
       return NextResponse.json(
-        { error: 'Please complete the short feedback form before your certificate is issued.' },
+        { error: 'Certificates are available for completed paid sessions only.' },
         { status: 403 },
       )
     }

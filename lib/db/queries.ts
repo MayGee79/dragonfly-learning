@@ -242,10 +242,9 @@ export async function canDownloadCertificate(
   clerkUserId: string,
   course: Course,
 ): Promise<boolean> {
+  if (course.pricePence <= 0) return false
   const completion = await getCompletion(clerkUserId, course.id)
-  if (!completion?.completed) return false
-  if (course.pricePence <= 0) return true
-  return completion.feedbackSubmittedAt != null
+  return completion?.completed ?? false
 }
 
 export async function getFeedbackSubmission(

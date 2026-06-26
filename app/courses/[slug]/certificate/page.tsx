@@ -31,7 +31,7 @@ export default async function CertificatePage({ params }: { params: { slug: stri
   }
 
   if (!(await canDownloadCertificate(userId, course))) {
-    redirect(`/courses/${course.slug}/feedback`)
+    redirect(`/courses/${course.slug}`)
   }
 
   const certRef = formatCertificateReference(completion.id)
