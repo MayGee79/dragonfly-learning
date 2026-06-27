@@ -5,6 +5,7 @@ import { auth } from '@clerk/nextjs/server'
 import { canDownloadCertificate, getCompletion, getCourseBySlug } from '@/lib/db/queries'
 import { formatCertificateReference } from '@/lib/certificate'
 import { formatDate } from '@/lib/format'
+import { NEWSLETTER_THANK_YOU_MESSAGE } from '@/lib/newsletterCopy'
 import styles from './Certificate.module.css'
 
 export const dynamic = 'force-dynamic'
@@ -14,7 +15,13 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 }
 
-export default async function CertificatePage({ params }: { params: { slug: string } }) {
+export default async function CertificatePage({
+  params,
+  searchParams,
+}: {
+  params: { slug: string }
+  searchParams: { newsletter?: string }
+}) {
   const course = await getCourseBySlug(params.slug)
   if (!course) {
     notFound()
@@ -35,11 +42,17 @@ export default async function CertificatePage({ params }: { params: { slug: stri
   }
 
   const certRef = formatCertificateReference(completion.id)
+  const showNewsletterNote = searchParams.newsletter === '1'
 
   return (
     <div className={styles.page}>
       <div className={styles.card}>
         <div className={styles.tealBar} />
+        {showNewsletterNote ? (
+          <p className={styles.newsletterNote} role="status">
+            {NEWSLETTER_THANK_YOU_MESSAGE}
+          </p>
+        ) : null}
         <p className={styles.brand}>Dragonfly Learning</p>
         <h1 className={styles.heading}>Certificate of Completion</h1>
         <p className={styles.subtle}>You have completed</p>

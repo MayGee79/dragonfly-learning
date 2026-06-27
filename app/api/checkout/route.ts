@@ -11,6 +11,7 @@ import {
 import { getStripe } from '@/lib/stripe'
 import { getCurrentUserInfo } from '@/lib/user'
 import { LEARNING_RATE_LIMITS, enforceRateLimit } from '@/lib/rateLimit'
+import { subscribeToMailerLite } from '@/lib/mailerlite'
 
 export const dynamic = 'force-dynamic'
 
@@ -76,6 +77,20 @@ export async function POST(request: Request) {
         if (!isUniqueViolation(e)) throw e
       }
       await ensureCompletionRow(user.userId, course.id)
+
+      if (newsletterOptIn) {
+        const result = await subscribeToMailerLite({
+          email: user.email,
+          firstName: user.name?.trim() || undefined,
+        })
+        if (!result.ok) {
+          console.error('[checkout] newsletter subscribe failed:', result.error, {
+            email: user.email,
+            courseId: course.id,
+          })
+        }
+      }
+
       return NextResponse.json({ redirectUrl: `/purchase/success?course=${course.slug}` })
     }
 
@@ -122,6 +137,7 @@ export async function POST(request: Request) {
         immediate_access_waiver: immediateAccessWaiver ? 'true' : 'false',
         newsletter_opt_in: newsletterOptIn ? 'true' : 'false',
         terms_accepted: 'true',
+        user_name: user.name?.trim() || '',
       },
       payment_intent_data: {
         receipt_email: user.email,

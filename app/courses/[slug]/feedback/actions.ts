@@ -12,6 +12,7 @@ import {
 } from '@/lib/db/queries'
 import { feedbackAudience, feedbackQuoteConsent } from '@/lib/db/schema'
 import { getCurrentUserInfo } from '@/lib/user'
+import { subscribeToMailerLite } from '@/lib/mailerlite'
 
 function parseRating(value: FormDataEntryValue | null): number {
   const n = parseInt(String(value || ''), 10)
@@ -77,6 +78,8 @@ export async function submitFeedbackAction(formData: FormData): Promise<void> {
       ? String(formData.get('registrationNumber') || '').trim() || null
       : null
 
+  const newsletterOptIn = formData.get('newsletterOptIn') === 'on'
+
   const mostUseful = String(formData.get('mostUseful') || '').trim()
   if (!mostUseful) throw new Error('Please share one thing you found most useful.')
 
@@ -96,14 +99,23 @@ export async function submitFeedbackAction(formData: FormData): Promise<void> {
     couldImprove: String(formData.get('couldImprove') || '').trim() || null,
     futureTopic: String(formData.get('futureTopic') || '').trim() || null,
     otherNotes: String(formData.get('otherNotes') || '').trim() || null,
-    newsletterOptIn: formData.get('newsletterOptIn') === 'on',
+    newsletterOptIn,
     quoteConsent: parseQuoteConsent(formData.get('quoteConsent')),
   })
+
+  if (newsletterOptIn) {
+    const nameParts = certificateName.split(/\s+/)
+    const firstName = nameParts[0] || certificateName
+    const result = await subscribeToMailerLite({ email, firstName })
+    if (!result.ok) {
+      console.error('[feedback] MailerLite subscribe failed:', result.error, { email, courseId: course.id })
+    }
+  }
 
   revalidatePath(`/courses/${slug}/certificate`)
   revalidatePath('/certificates')
   revalidatePath('/dashboard')
-  redirect(`/courses/${slug}/certificate`)
+  redirect(newsletterOptIn ? `/courses/${slug}/certificate?newsletter=1` : `/courses/${slug}/certificate`)
 }
 
 export async function feedbackGateForCourse(slug: string) {

@@ -11,6 +11,7 @@ import {
 } from '@/lib/db/queries'
 import { getStripe } from '@/lib/stripe'
 import { LEARNING_RATE_LIMITS, enforceRateLimit } from '@/lib/rateLimit'
+import { subscribeToMailerLite } from '@/lib/mailerlite'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -93,6 +94,26 @@ export async function POST(request: Request) {
 
       if (clerkUserId && courseId) {
         await ensureCompletionRow(clerkUserId, courseId)
+      }
+
+      if (newsletterOptIn) {
+        const email =
+          session.customer_email?.trim() ||
+          session.customer_details?.email?.trim() ||
+          ''
+        const firstName = session.metadata?.user_name?.trim() || undefined
+
+        if (email) {
+          const result = await subscribeToMailerLite({ email, firstName })
+          if (!result.ok) {
+            console.error('[stripe-webhook] newsletter subscribe failed:', result.error, {
+              sessionId: session.id,
+              email,
+            })
+          }
+        } else {
+          console.error('[stripe-webhook] newsletter opt-in but no email on session', session.id)
+        }
       }
     }
 

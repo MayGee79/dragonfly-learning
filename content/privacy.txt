@@ -80,7 +80,7 @@ Right to complain: You have a statutory right to raise a data protection complai
 10. Marketing Communications
 I will only send you marketing information (such as newsletters, updates about new CPD, or information about events) if you have specifically opted in. You can unsubscribe at any time by clicking the unsubscribe link in any email, or by contacting me directly.
 If you have previously purchased CPD or resources from me, I may send you information about similar offerings under the soft opt-in permitted by the Privacy and Electronic Communications Regulations (PECR). Every such email includes a clear and easy unsubscribe link, and you can opt out at any time without giving a reason.
-How I obtain consent: When you sign up for my newsletter, I will ask you to confirm your subscription by clicking a link in a confirmation email. I keep a record of when and how you signed up so I can demonstrate your consent if asked. Marketing emails are sent through MailerLite, which acts as a data processor under a written agreement.
+How I obtain consent: When you sign up for my newsletter, you opt in through a clear, separate tick box on this site (for example at checkout or on the feedback form). I keep a record of when and how you signed up so I can demonstrate your consent if asked. Marketing emails are sent through MailerLite, which acts as a data processor under a written agreement.
 11. Cookies
 The learning site uses cookies, which are small files stored on your device that help the site work properly and help me understand how visitors use it.
 	•	Essential cookies: These are necessary for the site to function, including to keep you logged in and to process payments securely. They do not collect personal information about you for analytics purposes.

@@ -154,6 +154,25 @@ export async function hasCompletedPurchase(
   return rows.length > 0
 }
 
+export async function getCompletedPurchaseNewsletterOptIn(
+  clerkUserId: string,
+  courseId: string,
+): Promise<boolean> {
+  const [row] = await db
+    .select({ newsletterOptIn: purchases.newsletterOptIn })
+    .from(purchases)
+    .where(
+      and(
+        eq(purchases.clerkUserId, clerkUserId),
+        eq(purchases.courseId, courseId),
+        eq(purchases.status, 'completed'),
+      ),
+    )
+    .orderBy(desc(purchases.purchasedAt))
+    .limit(1)
+  return row?.newsletterOptIn ?? false
+}
+
 export function accessAvailableFromPurchase(
   purchasedAt: Date,
   immediateAccessWaiver: boolean,

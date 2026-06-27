@@ -6,11 +6,13 @@ import { auth } from '@clerk/nextjs/server'
 import { isCheckoutSessionPaid, retrieveCheckoutSession } from '@/lib/checkoutSession'
 import {
   getAccessInfo,
+  getCompletedPurchaseNewsletterOptIn,
   getCourseById,
   getCourseBySlug,
   hasCompletedPurchase,
 } from '@/lib/db/queries'
 import { formatDate } from '@/lib/format'
+import { NEWSLETTER_THANK_YOU_MESSAGE } from '@/lib/newsletterCopy'
 import styles from './Success.module.css'
 
 export const dynamic = 'force-dynamic'
@@ -72,6 +74,7 @@ async function renderPaidSuccess(userId: string, sessionId: string) {
   }
 
   const immediateAccess = checkoutSession.metadata?.immediate_access_waiver === 'true'
+  const newsletterOptIn = checkoutSession.metadata?.newsletter_opt_in === 'true'
   const accessInfo = await getAccessInfo(userId, course.id)
 
   if (!immediateAccess) {
@@ -94,6 +97,7 @@ async function renderPaidSuccess(userId: string, sessionId: string) {
         }
         watchHref={undefined}
         showReceiptNote
+        newsletterOptIn={newsletterOptIn}
       />
     )
   }
@@ -108,6 +112,7 @@ async function renderPaidSuccess(userId: string, sessionId: string) {
       }
       watchHref={`/courses/${course.slug}/watch`}
       showReceiptNote
+      newsletterOptIn={newsletterOptIn}
     />
   )
 }
@@ -117,6 +122,8 @@ async function renderFreeSuccess(userId: string, courseSlug: string) {
   if (!course || !(await hasCompletedPurchase(userId, course.id))) {
     return renderFallback()
   }
+
+  const newsletterOptIn = await getCompletedPurchaseNewsletterOptIn(userId, course.id)
 
   return (
     <SuccessCard
@@ -128,6 +135,7 @@ async function renderFreeSuccess(userId: string, courseSlug: string) {
       }
       watchHref={`/courses/${course.slug}/watch`}
       showReceiptNote={false}
+      newsletterOptIn={newsletterOptIn}
     />
   )
 }
@@ -136,16 +144,23 @@ function SuccessCard({
   message,
   watchHref,
   showReceiptNote,
+  newsletterOptIn,
 }: {
   message: ReactNode
   watchHref?: string
   showReceiptNote?: boolean
+  newsletterOptIn?: boolean
 }) {
   return (
     <div className={styles.page}>
       <div className={styles.card}>
         <h1 className={styles.heading}>Thank you</h1>
         <p className={styles.message}>{message}</p>
+        {newsletterOptIn ? (
+          <p className={styles.newsletterNote} role="status">
+            {NEWSLETTER_THANK_YOU_MESSAGE}
+          </p>
+        ) : null}
         <div className={styles.actions}>
           {watchHref ? (
             <Link href={watchHref} className="btn-primary">

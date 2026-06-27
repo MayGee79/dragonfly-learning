@@ -1,0 +1,61 @@
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
+function buildWelcomeHtml(greeting: string): string {
+  return `
+    <p>${escapeHtml(greeting)}</p>
+    <p>Thank you for subscribing to the Dragonfly Psychotherapy newsletter. I am delighted to welcome you.</p>
+    <p>You will receive my newsletter roughly once a month, with reflections from my practice, news about new resources, occasional offers, and signposting to support that may be useful. I will never share your email address with anyone else.</p>
+    <p>If you have any questions, you are very welcome to reply to this email directly.</p>
+    <p>With warm regards,<br>Victoria</p>
+    <p>Dr Victoria Froome<br>Dragonfly Psychotherapy<br>victoria@dragonflypsychotherapy.co.uk<br>www.dragonflypsychotherapy.co.uk</p>
+    <p style="font-size:12px;color:#666;margin-top:24px;">You can unsubscribe at any time by replying to this email or contacting victoria@dragonflypsychotherapy.co.uk.</p>
+  `.trim()
+}
+
+/**
+ * Sends the newsletter welcome email via Resend (optional — skips if RESEND_API_KEY is unset).
+ */
+export async function sendNewsletterWelcomeEmail(input: {
+  email: string
+  firstName?: string
+}): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY
+  if (!apiKey) return
+
+  const to = input.email.trim()
+  if (!to) return
+
+  const from =
+    process.env.NEWSLETTER_WELCOME_FROM ||
+    process.env.CONTACT_EMAIL_FROM ||
+    'Dragonfly Psychotherapy <onboarding@resend.dev>'
+
+  const firstName = input.firstName?.trim()
+  const greeting = firstName ? `Hello ${firstName},` : 'Hello,'
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to,
+      reply_to: 'victoria@dragonflypsychotherapy.co.uk',
+      subject: 'Welcome to the Dragonfly newsletter',
+      html: buildWelcomeHtml(greeting),
+    }),
+  })
+
+  if (!res.ok) {
+    const raw = await res.text().catch(() => '')
+    throw new Error(`Resend welcome email failed: ${res.status} ${raw}`)
+  }
+}
