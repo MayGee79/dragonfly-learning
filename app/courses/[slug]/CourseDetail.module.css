@@ -2,6 +2,7 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: var(--spacing-4xl) var(--spacing-lg);
+  padding-bottom: calc(var(--spacing-4xl) + 6rem);
 }
 
 .grid {
@@ -182,5 +183,7 @@
 
   .sidebar {
     position: static;
+    /* Purchase options (terms + newsletter) appear before the long course description */
+    order: -1;
   }
 }

@@ -22,3 +22,10 @@
   font-size: var(--font-size-sm);
   margin: 0;
 }
+
+.signInHint {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-muted);
+}

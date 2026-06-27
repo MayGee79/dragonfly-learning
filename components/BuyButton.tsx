@@ -77,9 +77,15 @@ export default function BuyButton({
   if (state === 'signed-out') {
     const redirect = encodeURIComponent(`/courses/${slug}`)
     return (
-      <Link href={`/sign-in?redirect_url=${redirect}`} className="btn-primary">
-        Sign in to {isPaid ? 'purchase' : 'register'}
-      </Link>
+      <div className={styles.wrapper}>
+        <p className={styles.signInHint}>
+          Sign in to continue. You&apos;ll then see terms and an optional newsletter tick box before
+          {isPaid ? ' checkout' : ' registering'}.
+        </p>
+        <Link href={`/sign-in?redirect_url=${redirect}`} className="btn-primary">
+          Sign in to {isPaid ? 'purchase' : 'register'}
+        </Link>
+      </div>
     )
   }
 
