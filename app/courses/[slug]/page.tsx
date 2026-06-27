@@ -62,6 +62,10 @@ export default async function CourseDetailPage({ params }: { params: { slug: str
     }
   }
 
+  const showMainPurchaseFlow =
+    buttonState === 'signed-out' || buttonState === 'buy' || buttonState === 'free'
+  const showSidebarCta = !showMainPurchaseFlow
+
   return (
     <div className={styles.page}>
       <div className={styles.grid}>
@@ -69,6 +73,19 @@ export default async function CourseDetailPage({ params }: { params: { slug: str
           <p className={styles.eyebrow}>Dragonfly Learning · CPD</p>
           <h1 className={styles.title}>{course.title}</h1>
           {course.description && <p className={styles.lead}>{course.description}</p>}
+
+          {showMainPurchaseFlow && (
+            <section className={styles.purchaseSection} aria-label="Register or purchase this course">
+              <BuyButton
+                state={buttonState}
+                courseId={course.id}
+                slug={course.slug}
+                pricePence={course.pricePence}
+                accessAvailableAt={accessAvailableAt}
+                certificateHref={certificateHref}
+              />
+            </section>
+          )}
 
           <div className={styles.media}>
             {course.thumbnailUrl ? (
@@ -139,16 +156,18 @@ export default async function CourseDetailPage({ params }: { params: { slug: str
               </div>
             )}
 
-            <div className={styles.cta}>
-              <BuyButton
-                state={buttonState}
-                courseId={course.id}
-                slug={course.slug}
-                pricePence={course.pricePence}
-                accessAvailableAt={accessAvailableAt}
-                certificateHref={certificateHref}
-              />
-            </div>
+            {showSidebarCta && (
+              <div className={styles.cta}>
+                <BuyButton
+                  state={buttonState}
+                  courseId={course.id}
+                  slug={course.slug}
+                  pricePence={course.pricePence}
+                  accessAvailableAt={accessAvailableAt}
+                  certificateHref={certificateHref}
+                />
+              </div>
+            )}
             <p className={styles.note}>
               CPD hours are indicative. Please confirm suitability with your own professional body or employer.
             </p>

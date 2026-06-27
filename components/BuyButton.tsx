@@ -110,9 +110,15 @@ export default function BuyButton({
 
   if (state === 'continue') {
     return (
-      <Link href={watchUrl} className="btn-primary">
-        Continue watching
-      </Link>
+      <div className={styles.wrapper}>
+        <Link href={watchUrl} className="btn-primary">
+          Continue watching
+        </Link>
+        <p className={styles.enrolledNote}>
+          You are already registered for this course. The newsletter opt-in is only shown when you
+          first register or purchase.
+        </p>
+      </div>
     )
   }
 
