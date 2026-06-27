@@ -1,4 +1,8 @@
-import { getNewsletterFromAddress, getResendApiKey } from '@/lib/envSecrets'
+import {
+  getNewsletterFromAddress,
+  getResendApiKey,
+  getResendFallbackFromAddress,
+} from '@/lib/envSecrets'
 
 function escapeHtml(text: string): string {
   return text
@@ -20,25 +24,13 @@ function buildWelcomeHtml(greeting: string): string {
   `.trim()
 }
 
-/**
- * Sends the newsletter welcome email via Resend (optional — skips if no API key is set).
- */
-export async function sendNewsletterWelcomeEmail(input: {
-  email: string
-  firstName?: string
-}): Promise<void> {
-  const apiKey = getResendApiKey()
-  if (!apiKey) return
-
-  const to = input.email.trim()
-  if (!to) return
-
-  const from = getNewsletterFromAddress()
-
-  const firstName = input.firstName?.trim()
-  const greeting = firstName ? `Hello ${firstName},` : 'Hello,'
-
-  const res = await fetch('https://api.resend.com/emails', {
+async function sendWithFrom(
+  apiKey: string,
+  from: string,
+  to: string,
+  greeting: string,
+): Promise<Response> {
+  return fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${apiKey}`,
@@ -52,9 +44,46 @@ export async function sendNewsletterWelcomeEmail(input: {
       html: buildWelcomeHtml(greeting),
     }),
   })
+}
+
+function isUnverifiedDomainError(status: number, raw: string): boolean {
+  return status === 403 && /domain is not verified/i.test(raw)
+}
+
+/**
+ * Sends the newsletter welcome email via Resend (optional — skips if no API key is set).
+ */
+export async function sendNewsletterWelcomeEmail(input: {
+  email: string
+  firstName?: string
+}): Promise<void> {
+  const apiKey = getResendApiKey()
+  if (!apiKey) return
+
+  const to = input.email.trim()
+  if (!to) return
+
+  const firstName = input.firstName?.trim()
+  const greeting = firstName ? `Hello ${firstName},` : 'Hello,'
+
+  const preferredFrom = getNewsletterFromAddress()
+  let res = await sendWithFrom(apiKey, preferredFrom, to, greeting)
 
   if (!res.ok) {
     const raw = await res.text().catch(() => '')
+    const fallbackFrom = getResendFallbackFromAddress()
+    if (isUnverifiedDomainError(res.status, raw) && preferredFrom !== fallbackFrom) {
+      console.warn('[newsletter-welcome] domain not verified, retrying with Resend test from address')
+      res = await sendWithFrom(apiKey, fallbackFrom, to, greeting)
+      if (!res.ok) {
+        const retryRaw = await res.text().catch(() => '')
+        throw new Error(`Resend welcome email failed: ${res.status} ${retryRaw}`)
+      }
+      console.info('[newsletter-welcome] sent via fallback from address to', to)
+      return
+    }
     throw new Error(`Resend welcome email failed: ${res.status} ${raw}`)
   }
+
+  console.info('[newsletter-welcome] sent to', to)
 }

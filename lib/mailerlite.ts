@@ -65,6 +65,7 @@ export async function subscribeToMailerLite(
   }
 
   if (res.status === 200 || res.status === 201) {
+    console.info('[mailerlite] subscriber added:', trimmed)
     await sendWelcomeAfterSubscribe({ email: trimmed, firstName })
     return { ok: true }
   }

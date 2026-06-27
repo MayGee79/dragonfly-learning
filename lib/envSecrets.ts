@@ -1,5 +1,4 @@
-const DEFAULT_NEWSLETTER_FROM =
-  'Dragonfly Psychotherapy <victoria@dragonflypsychotherapy.co.uk>'
+const DEFAULT_NEWSLETTER_FROM = 'Dragonfly Psychotherapy <onboarding@resend.dev>'
 
 /** MailerLite API key — supports standard name and Vercel alias `dragonfly_learning`. */
 export function getMailerLiteApiKey(): string | undefined {
@@ -18,4 +17,9 @@ export function getNewsletterFromAddress(): string {
     process.env.CONTACT_EMAIL_FROM?.trim() ||
     DEFAULT_NEWSLETTER_FROM
   )
+}
+
+/** Resend test from address when custom domain is not verified on this Resend account. */
+export function getResendFallbackFromAddress(): string {
+  return DEFAULT_NEWSLETTER_FROM
 }
