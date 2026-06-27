@@ -7,6 +7,7 @@ const isProtectedRoute = createRouteMatcher([
   '/courses/(.*)/watch',
   '/courses/(.*)/certificate',
   '/courses/(.*)/feedback',
+  '/purchase/success',
 ])
 
 const isAdminRoute = createRouteMatcher(['/admin(.*)'])

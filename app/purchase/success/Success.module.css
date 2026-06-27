@@ -1,0 +1,60 @@
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--spacing-4xl) var(--spacing-lg);
+}
+
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-3xl) var(--spacing-2xl);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.heading {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text);
+}
+
+.message {
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+}
+
+.courseTitle {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.note {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-lg);
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-2xl);
+  align-items: stretch;
+}
+
+@media (min-width: 480px) {
+  .actions {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .actions a {
+    min-width: 11rem;
+  }
+}

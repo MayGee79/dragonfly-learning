@@ -76,7 +76,7 @@ export async function POST(request: Request) {
         if (!isUniqueViolation(e)) throw e
       }
       await ensureCompletionRow(user.userId, course.id)
-      return NextResponse.json({ redirectUrl: `/courses/${course.slug}/watch` })
+      return NextResponse.json({ redirectUrl: `/purchase/success?course=${course.slug}` })
     }
 
     const immediateAccessWaiver = body.immediateAccess === true
@@ -113,7 +113,7 @@ export async function POST(request: Request) {
           },
         },
       ],
-      success_url: `${siteUrl}/courses/${course.slug}${immediateAccessWaiver ? '/watch?purchase=success' : '?purchase=success'}`,
+      success_url: `${siteUrl}/purchase/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/courses/${course.slug}`,
       metadata: {
         clerk_user_id: user.userId,
