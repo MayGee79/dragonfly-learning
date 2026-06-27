@@ -1,4 +1,5 @@
 import { sendNewsletterWelcomeEmail } from '@/lib/newsletterWelcomeEmail'
+import { getMailerLiteApiKey } from '@/lib/envSecrets'
 
 const MAILERLITE_ENDPOINT = 'https://connect.mailerlite.com/api/subscribers'
 
@@ -25,9 +26,9 @@ async function sendWelcomeAfterSubscribe(input: MailerLiteSubscribeInput): Promi
 export async function subscribeToMailerLite(
   input: MailerLiteSubscribeInput,
 ): Promise<MailerLiteSubscribeResult> {
-  const apiKey = process.env.MAILERLITE_API_KEY
+  const apiKey = getMailerLiteApiKey()
   if (!apiKey) {
-    return { ok: false, error: 'MAILERLITE_API_KEY is not set' }
+    return { ok: false, error: 'MailerLite API key is not set' }
   }
 
   const trimmed = input.email.trim()

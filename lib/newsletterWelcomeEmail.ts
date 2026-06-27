@@ -1,3 +1,5 @@
+import { getNewsletterFromAddress, getResendApiKey } from '@/lib/envSecrets'
+
 function escapeHtml(text: string): string {
   return text
     .replace(/&/g, '&amp;')
@@ -19,22 +21,19 @@ function buildWelcomeHtml(greeting: string): string {
 }
 
 /**
- * Sends the newsletter welcome email via Resend (optional — skips if RESEND_API_KEY is unset).
+ * Sends the newsletter welcome email via Resend (optional — skips if no API key is set).
  */
 export async function sendNewsletterWelcomeEmail(input: {
   email: string
   firstName?: string
 }): Promise<void> {
-  const apiKey = process.env.RESEND_API_KEY
+  const apiKey = getResendApiKey()
   if (!apiKey) return
 
   const to = input.email.trim()
   if (!to) return
 
-  const from =
-    process.env.NEWSLETTER_WELCOME_FROM ||
-    process.env.CONTACT_EMAIL_FROM ||
-    'Dragonfly Psychotherapy <onboarding@resend.dev>'
+  const from = getNewsletterFromAddress()
 
   const firstName = input.firstName?.trim()
   const greeting = firstName ? `Hello ${firstName},` : 'Hello,'
