@@ -109,7 +109,7 @@ export default async function CourseDetailPage({ params }: { params: { slug: str
           <div className={styles.card}>
             <div className={styles.priceRow}>
               {isLaunchOfferActive(course) && (
-                <span className={styles.originalPrice} title="Full price from 11 July 2026">
+                <span className={styles.originalPrice} title="Full price from 21 July 2026">
                   {formatPrice(LAUNCH_OFFER_FULL_PRICE_PENCE)}
                 </span>
               )}
