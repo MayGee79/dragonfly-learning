@@ -45,7 +45,7 @@ async function main() {
     slug,
     description,
     longDescription,
-    pricePence: 750,
+    pricePence: 1500,
     durationMinutes: 60,
     cpdHours: '1.0',
     bunnyVideoId,

@@ -66,6 +66,7 @@ export async function POST(request: Request) {
       const accessAvailableAt = accessAvailableFromPurchase(purchasedAt, immediateAccessWaiver)
       const paymentIntentId =
         typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id
+      const amountTotal = session.amount_total
 
       try {
         const update = {
@@ -75,6 +76,7 @@ export async function POST(request: Request) {
           accessAvailableAt,
           newsletterOptIn,
           purchasedAt,
+          ...(typeof amountTotal === 'number' ? { amountPence: amountTotal } : {}),
         }
         if (purchaseId) {
           await db.update(purchases).set(update).where(eq(purchases.id, purchaseId))
