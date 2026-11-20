@@ -5,7 +5,11 @@ import { auth } from '@clerk/nextjs/server'
 import { ACCESS_PERIOD_MONTHS, getCompletion, getCourseBySlug, getAccessInfo, hasAccess } from '@/lib/db/queries'
 import { formatDuration, formatPrice } from '@/lib/format'
 import LaunchOfferBadge from '@/components/LaunchOfferBadge'
-import { isLaunchOfferActive, LAUNCH_OFFER_FULL_PRICE_PENCE } from '@/lib/launchOffer'
+import {
+  getPayablePricePence,
+  isLaunchOfferActive,
+  LAUNCH_OFFER_FULL_PRICE_PENCE,
+} from '@/lib/launchOffer'
 import { Markdown } from '@/lib/markdown'
 import BuyButton, { type BuyButtonState } from '@/components/BuyButton'
 import styles from './CourseDetail.module.css'
@@ -36,7 +40,8 @@ export default async function CourseDetailPage({ params }: { params: { slug: str
   }
 
   const { userId } = await auth()
-  const isFree = course.pricePence <= 0
+  const payablePence = getPayablePricePence(course)
+  const isFree = payablePence <= 0
 
   let buttonState: BuyButtonState
   let accessAvailableAt: string | null = null
@@ -80,7 +85,7 @@ export default async function CourseDetailPage({ params }: { params: { slug: str
                 state={buttonState}
                 courseId={course.id}
                 slug={course.slug}
-                pricePence={course.pricePence}
+                pricePence={payablePence}
                 accessAvailableAt={accessAvailableAt}
                 certificateHref={certificateHref}
               />
@@ -113,7 +118,7 @@ export default async function CourseDetailPage({ params }: { params: { slug: str
                   {formatPrice(LAUNCH_OFFER_FULL_PRICE_PENCE)}
                 </span>
               )}
-              <p className={styles.price}>{formatPrice(course.pricePence)}</p>
+              <p className={styles.price}>{formatPrice(payablePence)}</p>
               <LaunchOfferBadge slug={course.slug} />
             </div>
             <ul className={styles.facts}>
@@ -162,7 +167,7 @@ export default async function CourseDetailPage({ params }: { params: { slug: str
                   state={buttonState}
                   courseId={course.id}
                   slug={course.slug}
-                  pricePence={course.pricePence}
+                  pricePence={payablePence}
                   accessAvailableAt={accessAvailableAt}
                   certificateHref={certificateHref}
                 />

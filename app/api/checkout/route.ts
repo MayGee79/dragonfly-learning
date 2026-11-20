@@ -12,6 +12,7 @@ import { getStripe } from '@/lib/stripe'
 import { getCurrentUserInfo } from '@/lib/user'
 import { LEARNING_RATE_LIMITS, enforceRateLimit } from '@/lib/rateLimit'
 import { subscribeToMailerLite } from '@/lib/mailerlite'
+import { getPayablePricePence } from '@/lib/launchOffer'
 
 export const dynamic = 'force-dynamic'
 
@@ -95,6 +96,7 @@ export async function POST(request: Request) {
     }
 
     const immediateAccessWaiver = body.immediateAccess === true
+    const amountPence = getPayablePricePence(course)
 
     const [pending] = await db
       .insert(purchases)
@@ -103,7 +105,7 @@ export async function POST(request: Request) {
         userEmail: user.email,
         userName: user.name,
         courseId: course.id,
-        amountPence: course.pricePence,
+        amountPence,
         status: 'pending',
         immediateAccessWaiver,
         accessAvailableAt: accessAvailableFromPurchase(now, immediateAccessWaiver),
@@ -121,7 +123,7 @@ export async function POST(request: Request) {
           quantity: 1,
           price_data: {
             currency: 'gbp',
-            unit_amount: course.pricePence,
+            unit_amount: amountPence,
             product_data: {
               name: course.title,
               description: course.description || undefined,
